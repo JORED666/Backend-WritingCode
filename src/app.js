@@ -9,6 +9,7 @@ const ejercicioRoutes = require('./infrastructure/http/routes/ejercicio.routes')
 const evaluacionRoutes = require('./infrastructure/http/routes/evaluacion.routes');
 const preguntaRoutes = require('./infrastructure/http/routes/pregunta.routes');
 const opcionRoutes = require('./infrastructure/http/routes/opcion.routes');
+const dockerHubRoutes = require('./infrastructure/http/routes/dockerhub.routes');
 
 const errorHandler = require('./infrastructure/http/middlewares/errorHandler');
 const notFound = require('./infrastructure/http/middlewares/notFound');
@@ -28,6 +29,7 @@ app.use(`${API_PREFIX}/ejercicios`,  ejercicioRoutes);
 app.use(`${API_PREFIX}/evaluaciones`,evaluacionRoutes);
 app.use(`${API_PREFIX}/preguntas`,   preguntaRoutes);
 app.use(`${API_PREFIX}/opciones`,    opcionRoutes);
+app.use(`${API_PREFIX}/dockerhub`, dockerHubRoutes);
 
 app.get('/health', (req, res) => {
   res.json({ status: 'OK', service: 'WritingCode API', version: '1.0.0' });
