@@ -6,6 +6,7 @@ const pool = new Pool({
   database: process.env.DB_NAME     || 'writingcode_db',
   user:     process.env.DB_USER     || 'postgres',
   password: process.env.DB_PASSWORD || '',
+  ssl:      { rejectUnauthorized: false },
 });
 
 async function testConnection() {
