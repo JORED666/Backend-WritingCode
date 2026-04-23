@@ -85,8 +85,24 @@ class DeleteLeccion {
     return { message: 'Lección eliminada' };
   }
 }
+class GetNavegacionLeccion {
+  constructor(repo) { this.repo = repo; }
+  async execute(id) {
+    const leccion = await this.repo.findById(id);
+    if (!leccion) throw new Error(`Lección ${id} no encontrada`);
 
+    const lecciones = await this.repo.findByModulo(leccion.id_modulo);
+    const idx = lecciones.findIndex(l => l.id_leccion === parseInt(id));
+
+    return {
+      actual:    leccion,
+      anterior:  idx > 0 ? lecciones[idx - 1] : null,
+      siguiente: idx < lecciones.length - 1 ? lecciones[idx + 1] : null,
+    };
+  }
+}
 module.exports = {
   GetAllModulos, GetModuloById, GetModulosByCurso, CreateModulo, UpdateModulo, DeleteModulo,
   GetAllLecciones, GetLeccionById, GetLeccionesByModulo, CreateLeccion, UpdateLeccion, DeleteLeccion,
+  GetNavegacionLeccion,
 };

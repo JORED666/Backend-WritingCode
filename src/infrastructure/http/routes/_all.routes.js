@@ -10,6 +10,7 @@ leccionRouter.get('/:id',                       leccionCtrl.getById);
 leccionRouter.put('/:id',                       leccionCtrl.update);
 leccionRouter.delete('/:id',                    leccionCtrl.delete);
 leccionRouter.get('/:id/ejercicios', ejercicioCtrl.getByLeccion);
+leccionRouter.get('/:id/navegacion', leccionCtrl.getNavegacion);
 
 const ejercicioRouter = Router();
 ejercicioRouter.get('/',              ejercicioCtrl.getAll);

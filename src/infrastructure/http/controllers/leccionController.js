@@ -5,6 +5,7 @@ const {
   CreateLeccion,
   UpdateLeccion,
   DeleteLeccion,
+  GetNavegacionLeccion,
 } = require('../../../application/use-cases/shared');
 const { LeccionRepository } = require('../../repositories/ContentRepositories');
 
@@ -50,6 +51,13 @@ const leccionController = {
     try {
       const result = await new DeleteLeccion(repo).execute(req.params.id);
       res.json({ success: true, ...result });
+    } catch (err) { next(err); }
+  },
+
+  async getNavegacion(req, res, next) {
+    try {
+      const data = await new GetNavegacionLeccion(repo).execute(req.params.id);
+      res.json({ success: true, data });
     } catch (err) { next(err); }
   },
 };
